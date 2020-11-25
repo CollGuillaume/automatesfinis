@@ -31,4 +31,15 @@ def isDetermine(automata):
         
         
 def isReconized(automata, wordtoreconize):
-    if 
+    #trouver comment lire les deux premiers caracteres des lignes pour les 
+    #comparer
+    
+def jsp(automate, word): 
+    automate 
+    if automate.isDetermine
+        if automate.isReconized:
+            return print("YES")
+        else:
+            return print("NO")
+    else 
+        return print("ERROR")
