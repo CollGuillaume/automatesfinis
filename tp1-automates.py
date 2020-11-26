@@ -17,29 +17,41 @@ if len(sys.argv) != 3:
 automatonfile = sys.argv[1]  
 word = sys.argv[2]
 
-#qu'est ce que le chiffre dans statesdict ? 
-def isDetermine(automata):
-    for i in range(10):
-        if str(list(automata.statesdict["?"].transitions["a"])[i])>1:
+def isDeterminist(automaton):
+
+    for state in automaton.statesdict:
+        for alphabet in automaton.alphabet:
+            if alphabet in automaton.statesdict[state].transitions:
+                  if alphabet == "%" and len(automaton.statesdict[state].transitions[alphabet]) == 1 \
+                      and list(automaton.statesdict[state].transitions[alphabet].keys())[0].name != state:
+                      return False
+                  if len(automaton.statesdict[state].transitions[alphabet])>1:
+                      return False
+
+    return True
+
+def isRecognize(automate, mot:str)->bool:
+
+
+    current_state = automate.initial
+
+    if mot == automaton.EPSILON and current_state.is_accept:
+
+      return True
+
+    for letter in mot:
+        if letter not in automate.alphabet:
+
             return False
-        if str(list(automata.statesdict["?"].transitions["a"])[i])<=1:
-            return True
-        if str(list(automata.statesdict["?"].transitions["b"])[i])>1:
-            return False
-        if str(list(automata.statesdict["?"].transitions["b"])[i])<=1:
-            return True
-        
-        
-def isReconized(automata, wordtoreconize):
-    #trouver comment lire les deux premiers caracteres des lignes pour les 
-    #comparer
-    
-def jsp(automate, word): 
-    automate 
-    if automate.isDetermine
-        if automate.isReconized:
-            return print("YES")
+
+
+    for letter in mot: 
+
+        if letter in current_state.transitions:
+            current_state = list(current_state.transitions[letter].keys())[0]
         else:
-            return print("NO")
-    else 
-        return print("ERROR")
+            return False
+
+
+    if current_state.is_accept:
+        return True
